@@ -262,11 +262,12 @@
       var field56 = $("#KTJ6").val();
 
       // How did you hear about us
-      var field5  = $("#ques1").val();
+      var field5 = $("#ques1").val();
+
+      // CFA consent (Yes if checked, else empty string)
+      var cfaConsent = $("#cfaConsent").is(":checked") ? "Yes" : "";
 
       $.ajax({
-        // 🔴 REPLACE NEW_FORM_ID_HERE with your actual form ID from the prefilled link
-        // It will look like: https://docs.google.com/forms/d/e/NEW_FORM_ID/formResponse
         url: "https://docs.google.com/forms/d/e/1FAIpQLSc2Y9bJzmFpK0IqtpS1-txrHkKt8QLwxn3BRwGGnD3Y8LNQmQ/formResponse",
 
         data: {
@@ -316,8 +317,11 @@
           "entry.1405417480": field56, // KTJ ID
 
           // How did you hear about us
-          "entry.1458303144":        field5,
-          "entry.1458303144_sentinel": ""   // often required by Google for dropdowns
+          "entry.1458303144": field5,
+          "entry.1458303144_sentinel": "",
+
+          // CFA consent
+          "entry.1834042927": cfaConsent
         },
 
         type: "POST",
@@ -327,13 +331,10 @@
           $('#regform').trigger('reset');
         },
         error: function (x, y, z) {
-          // Google Forms usually returns error status even on success,
-          // so we still reset the form here.
           $('#regform').trigger('reset');
         }
       });
 
-      // Prevent normal form submission
       return false;
   }
 </script>
@@ -1959,6 +1960,65 @@ function hiden()
                     <option value="Other">Other</option>
                     </select> 
                    
+<!-- NEW: mandatory CFA consent checkbox -->
+<br><br>
+
+<div style="position: relative; z-index: 9999; padding: 12px 0;">
+
+  <label for="cfaConsent" style="
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 18px;
+      line-height: 1.4;
+      color: #00b7df;
+      font-weight: 500;
+      cursor: pointer;
+  ">
+
+    <!-- REAL CHECKBOX -->
+    <input
+      type="checkbox"
+      id="cfaConsent"
+      name="entry.1834042927"
+      value="Yes"
+      required
+      style="
+        width: 22px;
+        height: 22px;
+        margin-top: 4px;
+        box-sizing: border-box;
+
+        /* FORCE visibility regardless of global CSS */
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: inline-block !important;
+        position: static !important;
+        left: auto !important;
+        right: auto !important;
+        pointer-events: auto !important;
+        clip: auto !important;
+        transform: none !important;
+
+        /* Make sure browser renders it as a normal checkbox */
+        appearance: auto !important;
+        -webkit-appearance: checkbox !important;
+        -moz-appearance: checkbox !important;
+      "
+    />
+
+    <!-- Consent text -->
+    <span>
+      By submitting this form, I agree and consent to receive communications and updates about CFA Institute products and
+      services via email, WhatsApp and other channels used by CFA Institute. I have reviewed and acknowledged the Privacy
+      Notice along with the Terms and Conditions therein.
+    </span>
+
+  </label>
+</div>
+
+<br><br>
+
 
                 <!-- </div> -->
                 
@@ -3472,58 +3532,17 @@ function hiden()
       
       <!-- tab-content --> 
       
-    </div>
-
-
-    
+    </div>    
 
 <!-- Modals -->
 
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
   </main>
   
-  <!-- main --> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+  <!-- main -->  
   
   <!-- footer -->
   
   <footer role="footer" id="footz">
-
-
-
-
-
-
 
     <div id="footcontainer">
       <p><a href="https://bclub.co.in/">Business Club, IIT Kharagpur</a></p>
@@ -3606,19 +3625,6 @@ function hiden()
     function foo(){ console.log("Callback"); }
 
     </script>
-
-
-
-
-
-
-
-
-   
-
-
-
-
 
 </body>
 </html>
