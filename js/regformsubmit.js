@@ -153,6 +153,16 @@ function checkForm()
                           document.getElementById("submit").innerText = "Fill all compulsory fields and try again";
 
                       }
+
+                    else if(!document.getElementById("cfaConsent").checked)
+                      {
+                          document.getElementById("cfaConsent").focus();
+                          var mysubmit = document.getElementById('submit');
+                          var displaySetting = submit.style.display;
+                          mysubmit.style.display = 'block';
+                          document.getElementById("submit").innerText = "Please check the mandatory checkbox to proceed";
+                      }
+
                       // validation was successful
                       
                       else {
@@ -161,7 +171,7 @@ function checkForm()
                         var mysubmit = document.getElementById('submit');
                         var displaySetting = submit.style.display;
                         mysubmit.style.display = 'block';
-                        document.getElementById("submit").innerHTML = "<center><h1><b>You have successfully registered for ICC 2025.</b></h1  ></center> <br>Business Club conducts ICC every year in association with Kshitij. Kshitij is the annual techno-management fest of IIT Kharagpur. Kshitij organizes a wide range of events encompassing every genre of technology and management. Numerous events of the fest are cerified by World-renowned organizations like ACM, IEEE, ASME, ASHRAE and IMechE. This year Kshitij will be conducted on 17th, 18th and 19th January 2025.<br> <center><h1><b>For information regarding further rounds, you can register at: <a href='https://ktj.in/' target='_blank'>Kshitij 2025</a></b></h1></center>";
+                        document.getElementById("submit").innerHTML = "<center><h1><b>You have successfully registered for ICC 2026.</b></h1  ></center> <br>Business Club conducts ICC every year in association with Kshitij. Kshitij is the annual techno-management fest of IIT Kharagpur. Kshitij organizes a wide range of events encompassing every genre of technology and management. Numerous events of the fest are cerified by World-renowned organizations like ACM, IEEE, ASME, ASHRAE and IMechE. This year Kshitij will be conducted on 16th, 17th and 18th January 2026.<br> <center><h1><b>For information regarding further rounds, you can register at: <a href='https://ktj.in/' target='_blank'>Kshitij 2026</a></b></h1></center>";
                       }
 
                     }
